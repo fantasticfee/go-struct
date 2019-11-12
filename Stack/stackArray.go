@@ -1,24 +1,37 @@
-package StackArray
+package Stack
+
+import "fmt"
 
 type StackArray struct {
-	items []string
+	items []interface{}
 	count uint
 	size  uint
 }
 
 func NewStackArray(n uint) *StackArray {
 	newItem := &StackArray{
-		items: make([]string, n),
-		count: 0,
+		items: make([]string, 0, n),
+		count: -1,
 		size:  n,
 	}
 	return newItem
 }
 
-func (this *StackArray) Push(item string) bool {
+func (this *StackArray) Flush() {
+	this.count = -1
+}
+
+func (this *StackArray) IsEmpty() bool {
+	if this.count == -1 {
+		return true
+	}
+	return false
+}
+
+func (this *StackArray) Push(item interface{}) bool {
 	if this.count == this.size {
 		newStack := &StackArray{}
-		items := make([]string, this.size*2)
+		items := make([]string, 0, this.size*2)
 		copy(items, this.items)
 		newStack.items = itmes
 		newStack.size = this.size * 2
@@ -34,11 +47,21 @@ func (this *StackArray) Push(item string) bool {
 	return true
 }
 
-func (this *StackArray) Pop(item string) string {
+func (this *StackArray) Pop(item interface{}) interface{} {
 	if this.count == 0 {
 		return false
 	}
 	tmp := this.items[count]
 	this.count--
 	return tmp
+}
+
+func (this *StackArray) Print() {
+	if this.IsEmpty() {
+		fmt.Println("empty stack")
+	} else {
+		for i := this.count; i >= 0; i-- {
+			fmt.Println(this.items[i])
+		}
+	}
 }

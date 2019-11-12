@@ -1,5 +1,7 @@
 package StackArray
 
+import "fmt"
+
 type ArrayStack struct {
 	//数据
 	data []interface{}

@@ -27,7 +27,7 @@ func isPalindrome(list *LinkList) bool {
 	return true
 }
 
-func isPalindrome2(l *LinkedList) bool {
+func isPalindrome2(l *LinkList) bool {
 	iLen = l.length
 	if iLen == 0 {
 		return false
